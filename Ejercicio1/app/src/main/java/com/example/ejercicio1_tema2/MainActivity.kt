@@ -4,20 +4,21 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
-import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.width
-import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.foundation.layout.size
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.automirrored.filled.ArrowBack
+import androidx.compose.material.icons.filled.AccountCircle
+import androidx.compose.material.icons.filled.Favorite
 import androidx.compose.material3.BottomAppBar
 import androidx.compose.material3.CenterAlignedTopAppBar
 import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.Icon
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBarDefaults
@@ -25,6 +26,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
@@ -49,28 +51,22 @@ class MainActivity : ComponentActivity() {
                             colors = TopAppBarDefaults.topAppBarColors(
                                 containerColor = Color(0xFFCDE7B0)
                             ),
-                            title = { Text("Título") },
+                            title = { Text("Asignaturas") },
                             navigationIcon = {
-                                Box(Modifier
-                                    .clip(shape = CircleShape)
-                                    .height(35.dp)
-                                    .width(35.dp)
-                                    .background(Color.Black)
-                                ){}
+                                Icon(
+                                    imageVector = Icons.AutoMirrored.Filled.ArrowBack,
+                                    contentDescription = "favorite",
+                                    tint = Color.Black,
+                                    modifier = Modifier.size(30.dp)
+                                )
                             },
                             actions = {
-                                Box(Modifier
-                                    .clip(shape = CircleShape)
-                                    .height(35.dp)
-                                    .width(35.dp)
-                                    .background(Color.Black)
-                                ){}
-                                Box(Modifier
-                                    .clip(shape = CircleShape)
-                                    .height(35.dp)
-                                    .width(35.dp)
-                                    .background(Color.Black)
-                                ){}
+                                Icon(
+                                    imageVector = Icons.Filled.AccountCircle,
+                                    contentDescription = "favorite",
+                                    tint = Color.DarkGray,
+                                    modifier = Modifier.size(48.dp)
+                                )
                             }
                         )
                     },
@@ -82,33 +78,33 @@ class MainActivity : ComponentActivity() {
                             Row (Modifier.fillMaxWidth(),
                                 horizontalArrangement = Arrangement.SpaceEvenly)
                             {
-                                Box(Modifier
-                                    .clip(shape = CircleShape)
-                                    .height(35.dp)
-                                    .width(35.dp)
-                                    .background(Color.Black)
-                                    .clickable {
-                                        navController.navigate("screen1")
-                                    }
-                                ){}
-                                Box(Modifier
-                                    .clip(shape = CircleShape)
-                                    .height(35.dp)
-                                    .width(35.dp)
-                                    .background(Color.Black)
-                                    .clickable {
-                                        navController.navigate("screen2")
-                                    }
-                                ){}
-                                Box(Modifier
-                                    .clip(shape = CircleShape)
-                                    .height(35.dp)
-                                    .width(35.dp)
-                                    .background(Color.Black)
-                                    .clickable {
-                                        navController.navigate("screen3")
-                                    }
-                                ){}
+                                Icon(
+                                    painter = painterResource(R.drawable.home),
+                                    contentDescription = "favorite",
+                                    tint = Color.Black,
+                                    modifier = Modifier.size(30.dp)
+                                        .clickable {
+                                            navController.navigate("screen1")
+                                        }
+                                )
+                                Icon(
+                                    painter = painterResource(R.drawable.edit),
+                                    contentDescription = "favorite",
+                                    tint = Color.Black,
+                                    modifier = Modifier.size(25.dp)
+                                        .clickable {
+                                            navController.navigate("screen2")
+                                        }
+                                )
+                                Icon(
+                                    imageVector = Icons.Filled.Favorite,
+                                    contentDescription = "favorite",
+                                    tint = Color.Red,
+                                    modifier = Modifier.size(30.dp)
+                                        .clickable {
+                                            navController.navigate("screen3")
+                                        }
+                                )
                             }
                         }
                     },
